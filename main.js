@@ -44,23 +44,22 @@ addBtnTablero.addEventListener("click", e => {
         addBtn.addEventListener('click', function() {
          console.log('El botón secundario  fue presionado!');
 
-         const text = inputTarea.value;
+         const text2 = inputTarea.value;
         
-        if (text !== ""){
+        if (text2 !== ""){
+          inputTarea.value = "";
+          pEmpty.textContent ="";
          const li = document.createElement("li");
          const p = document.createElement("p");
  
-         p.textContent = text;
-         
-         li.appendChild(p);
- 
-         ul.appendChild(li);
-         empty.style.display = "none";
-         inputTarea.value = "";
-         li.appendChild(addDeleteBtn());
-         
-         
-          }
+         p.textContent = text2;
+          li.appendChild(p);
+          ul.appendChild(li);
+          li.appendChild(addDeleteBtn());
+          
+          
+           }
+
         });
 
           divLiContainer.appendChild(ul);
@@ -70,7 +69,6 @@ addBtnTablero.addEventListener("click", e => {
           divContainer.appendChild(divTareasList);
         
           contTaberos.appendChild(divContainer);
-
 
           function addDeleteBtn () {
 
@@ -88,13 +86,14 @@ addBtnTablero.addEventListener("click", e => {
               const items = document.querySelectorAll("li");
               
               if(items.length === 0) {
-                 empty.style.display = "block"
+                pEmpty.textContent ="No tiene tareas pendientes.";
           }
             });
            
             return deleteBtn;
           
           }
+
         }
 
         inputTablero.value="";
