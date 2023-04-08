@@ -34,11 +34,19 @@ addBtnTablero.addEventListener("click", e => {
         divLiContainer.className="li-container";
         const ul = document.createElement("ul");
         ul.className="listaUL";
-  
+        const divEmpty = document.createElement("div");
+        divEmpty.className = "empty";
+        const pEmpty = document.createElement("p");
+        pEmpty.textContent ="No tiene tareas pendientes.";
+        divEmpty.appendChild(pEmpty);
+        divContainer.appendChild(divEmpty);
        
         addBtn.addEventListener('click', function() {
          console.log('El botón secundario  fue presionado!');
+
          const text = inputTarea.value;
+        
+        if (text !== ""){
          const li = document.createElement("li");
          const p = document.createElement("p");
  
@@ -46,8 +54,14 @@ addBtnTablero.addEventListener("click", e => {
          
          li.appendChild(p);
  
-         ul.appendChild(li)
-          });
+         ul.appendChild(li);
+         empty.style.display = "none";
+         inputTarea.value = "";
+         li.appendChild(addDeleteBtn());
+         
+         
+          }
+        });
 
           divLiContainer.appendChild(ul);
           divContainer.appendChild(divLiContainer);
@@ -56,9 +70,37 @@ addBtnTablero.addEventListener("click", e => {
           divContainer.appendChild(divTareasList);
         
           contTaberos.appendChild(divContainer);
+
+
+          function addDeleteBtn () {
+
+            const deleteBtn = document.createElement("button");
+          
+            deleteBtn.textContent = "X";
+            deleteBtn.className = "btn-delete";
+          
+            deleteBtn.addEventListener("click", (e)=>{
+            
+              const item = e.target.parentElement;
+              
+              ul.removeChild(item);
+              
+              const items = document.querySelectorAll("li");
+              
+              if(items.length === 0) {
+                 empty.style.display = "block"
+          }
+            });
+           
+            return deleteBtn;
+          
+          }
         }
 
-
+        inputTablero.value="";
 
         });
 
+
+
+     
